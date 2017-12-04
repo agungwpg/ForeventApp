@@ -12,8 +12,11 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -55,6 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
     public final static  String TAG_PEKERJAAN="pekerjaan";
     public final static  String TAG_FOTOPROFIL="gambar";
     String usernameSp,namaSp,emailSp,tgllahirSp,alamatSp,pekerjaanSp,fotoprofilSp;
+    Button btneditProfile, btnlogout;
     ImageView imgfotoprofil;
 
 
@@ -65,6 +69,14 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        TextView usernameProfil =(TextView) findViewById(R.id.txtusernameprofil);
+        TextView namaprofil=(TextView) findViewById(R.id.txtnamalengkapprofil);
+        TextView emailprofil=(TextView) findViewById(R.id.txtemailprofil);
+        TextView tgllahirprofil=(TextView) findViewById(R.id.txttglahirprofil);
+        TextView alamatprofil=(TextView) findViewById(R.id.txtalamatprofil);
+        TextView pekerjaanprofil=(TextView) findViewById(R.id.txtpekerjaanprofil);
+        btneditProfile = (Button)findViewById(R.id.btneditprofil);
+        btnlogout = (Button)findViewById(R.id.btnlogout);
         imgfotoprofil = (ImageView)findViewById(R.id.profilePicture);
 
         sharedpreferences = getSharedPreferences(LoginActivity.my_shared_preferences, Context.MODE_PRIVATE);
@@ -76,6 +88,12 @@ public class ProfileActivity extends AppCompatActivity {
         pekerjaanSp = sharedpreferences.getString(TAG_PEKERJAAN,"");
         fotoprofilSp = sharedpreferences.getString(TAG_FOTOPROFIL,"");
 
+        usernameProfil.setText(usernameSp);
+        namaprofil.setText(namaSp);
+        emailprofil.setText(emailSp);
+        tgllahirprofil.setText(tgllahirSp);
+        alamatprofil.setText(alamatSp);
+        pekerjaanprofil.setText(pekerjaanSp);
         if(fotoprofilSp!=null)
         {
             // penggesetan gambar decode dari string to bitmap
@@ -83,8 +101,8 @@ public class ProfileActivity extends AppCompatActivity {
             Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
             imgfotoprofil.setImageBitmap(decodedBitmap);
             // set ukuran dan margin
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(180, 180);
-            layoutParams.setMargins(20, 60, 0,0);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(450, 450);
+            //layoutParams.setMargins(20, 60, 0,0);
             imgfotoprofil.setLayoutParams(layoutParams);
         }
 
@@ -95,5 +113,27 @@ public class ProfileActivity extends AppCompatActivity {
         menuItem.setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         //===============
+
+        btneditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //SABAR DULU SAYANG
+            }
+        });
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Logout
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean(LoginActivity.session_status, false);
+                editor.putString(TAG_ID, null);
+                editor.putString(TAG_USERNAME, null);
+                editor.commit();
+                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
+
      }
 }

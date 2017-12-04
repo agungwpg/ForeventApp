@@ -7,8 +7,8 @@ package com.tecno.wira.foreventapp;
 public class Server {
 
     //Local
-    //public static  final String url="http://192.168.43.1/forevent/";
+    public static  final String url="http://192.168.0.178/forevent/";
 
     //Web
-    public static  final String url="http://forevent.000webhostapp.com/services/";
+    //public static  final String url="http://forevent.000webhostapp.com/services/";
 }
