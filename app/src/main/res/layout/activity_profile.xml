@@ -50,11 +50,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <TextView
+                            android:textColor="@color/colorAccent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nama :"/>
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:textAlignment="textEnd"
+                            android:layout_marginRight="10dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/txtnamalengkapprofil"/>
                     </LinearLayout>
@@ -63,7 +66,9 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/txtemailprofil"/>
                     </LinearLayout>
@@ -72,10 +77,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                        <Button
-                            android:layout_width="wrap_content"
+                        <android.support.v7.widget.AppCompatButton
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/btneditprofil"
+                            android:background="@color/colorAccent"
+                            android:textColor="@android:color/white"
                             android:text="Edit Profile"
                             android:layout_gravity="center"
                             android:gravity="center"/>
@@ -86,8 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="20dp"
-            android:padding="5dp">
+            android:layout_marginBottom="50dp">
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent">
@@ -106,10 +112,12 @@
                         android:textStyle="bold"
                         android:textSize="30dp"/>
                     <LinearLayout
+                        android:layout_margin="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <TextView
+                            android:textColor="@color/colorAccent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tanggal Lahir :"
@@ -125,11 +133,15 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp">
                         <TextView
+                            android:textColor="@color/colorAccent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Alamat :"
+
+
                             android:textSize="20dp"/>
                         <TextView
                             android:textSize="20dp"
@@ -143,12 +155,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_margin="8dp">
-                        <Button
+                        android:layout_margin="10dp">
+                        <android.support.v7.widget.AppCompatButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:text="Log Out"
+                            android:background="@color/colorAccent"
+                            android:textColor="@android:color/white"
                             android:id="@+id/btnlogout"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -162,7 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
