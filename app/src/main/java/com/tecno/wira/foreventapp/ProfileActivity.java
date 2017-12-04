@@ -1,14 +1,19 @@
 package com.tecno.wira.foreventapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -60,6 +65,29 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        imgfotoprofil = (ImageView)findViewById(R.id.profilePicture);
+
+        sharedpreferences = getSharedPreferences(LoginActivity.my_shared_preferences, Context.MODE_PRIVATE);
+        usernameSp = sharedpreferences.getString(TAG_USERNAME,"");
+        namaSp = sharedpreferences.getString(TAG_NAMA,"");
+        emailSp = sharedpreferences.getString(TAG_EMAIL,"");
+        tgllahirSp = sharedpreferences.getString(TAG_TGL_LAHIR,"");
+        alamatSp = sharedpreferences.getString(TAG_ALAMAT,"");
+        pekerjaanSp = sharedpreferences.getString(TAG_PEKERJAAN,"");
+        fotoprofilSp = sharedpreferences.getString(TAG_FOTOPROFIL,"");
+
+        if(fotoprofilSp!=null)
+        {
+            // penggesetan gambar decode dari string to bitmap
+            byte[] decodedBytes = Base64.decode(fotoprofilSp, Base64.DEFAULT);
+            Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+            imgfotoprofil.setImageBitmap(decodedBitmap);
+            // set ukuran dan margin
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(180, 180);
+            layoutParams.setMargins(20, 60, 0,0);
+            imgfotoprofil.setLayoutParams(layoutParams);
+        }
+
         //==============
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
         Menu menu = bottomNavigationView.getMenu();
@@ -67,6 +95,5 @@ public class ProfileActivity extends AppCompatActivity {
         menuItem.setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         //===============
-
-    }
+     }
 }
