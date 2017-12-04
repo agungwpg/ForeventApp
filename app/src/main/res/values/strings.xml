@@ -1,3 +1,7 @@
 <resources>
+    <string name="title_home">Home</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_myevents">My Events</string>
     <string name="app_name">Forevent.ID</string>
+
 </resources>

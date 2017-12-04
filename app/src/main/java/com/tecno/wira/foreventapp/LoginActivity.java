@@ -68,13 +68,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //injection View
-        btn_login = (Button) findViewById(R.id.btnLogin);
-        btn_register = (TextView) findViewById(R.id.btnRegister);
-        txt_username = (EditText) findViewById(R.id.txtUsernameLogin);
-        txt_password = (EditText) findViewById(R.id.txtPasswordLogin);
-
-
         conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         {
             if (conMgr.getActiveNetworkInfo() != null
@@ -86,6 +79,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
+        //injection View
+        btn_login = (Button) findViewById(R.id.btnLogin);
+        btn_register = (TextView) findViewById(R.id.btnRegister);
+        txt_username = (EditText) findViewById(R.id.txtUsernameLogin);
+        txt_password = (EditText) findViewById(R.id.txtPasswordLogin);
+
+        // Cek session login jika TRUE maka langsung buka MainActivity
         sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         session = sharedpreferences.getBoolean(session_status, false);
         id = sharedpreferences.getString(TAG_ID, null);
@@ -136,9 +136,20 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //---- about us
+        TextView btnAboutUs = (TextView) findViewById(R.id.txtAbout);
+//        btnAboutUs.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i= new Intent(getApplicationContext(),aboutUs.class);
+//                startActivity(i);
+//            }
+//        });
+
     }
 
-    private void checkLogin(final String username, final String password) {
+    private void checkLogin(final String username, final String password){
+
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Logging in ...");
@@ -186,7 +197,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.commit();
 
                         // Memanggil main activity
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         intent.putExtra(TAG_ID, id);
                         intent.putExtra(TAG_USERNAME, username);
                         intent.putExtra(TAG_NAMA,nama);
@@ -223,6 +234,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             protected Map<String, String> getParams() {
+
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("username", username);

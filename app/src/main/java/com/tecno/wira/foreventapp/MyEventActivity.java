@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MyEventActivity extends AppCompatActivity {
 
     //Bottom Navigation Bar ===========================
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -19,15 +19,15 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-
-                    return true;
-                case R.id.navigation_myevents:
-                    Intent intentAdd = new Intent(MainActivity.this,MyEventActivity.class);
-                    startActivity(intentAdd);
+                    Intent intentHome = new Intent(MyEventActivity.this,MainActivity.class);
+                    startActivity(intentHome);
                     finish();
                     return true;
+                case R.id.navigation_myevents:
+
+                    return true;
                 case R.id.navigation_profile:
-                    Intent intentProfile = new Intent(MainActivity.this,ProfileActivity.class);
+                    Intent intentProfile = new Intent(MyEventActivity.this,ProfileActivity.class);
                     startActivity(intentProfile);
                     finish();
                     return true;
@@ -40,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_my_event);
 
         //==============
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(0);
+        MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         //===============
