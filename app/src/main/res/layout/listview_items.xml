@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/textviewID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignEnd="@+id/textviewSubjectName"
+        android:layout_marginEnd="36dp"
+        android:text="ID Show Here"
+        android:textColor="#000"
+        android:visibility="invisible"
+        android:textSize="22dp" />
+
+    <TextView
+        android:id="@+id/textviewSubjectName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textviewID"
+        android:layout_marginEnd="36dp"
+        android:layout_marginTop="11dp"
+        android:text="Subject Name Show Here"
+        android:textColor="#2196F3"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/imgevent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="16dp"
+        android:layout_toStartOf="@+id/textviewSubjectName"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+</RelativeLayout>

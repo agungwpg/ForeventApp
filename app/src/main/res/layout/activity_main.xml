@@ -5,15 +5,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.tecno.wira.foreventapp.MainActivity">
-
-    <FrameLayout
-        android:id="@+id/frame_layout"
+    <ScrollView
+        android:layout_marginBottom="55dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/navigation"
-        android:animateLayoutChanges="true">
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/frame_layout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/navigation"
+            android:animateLayoutChanges="true">
 
-    </FrameLayout>
+            <TextView
+                android:id="@+id/imgbuttonSport"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:text="SPORT"
+                android:textSize="80px"
+                android:background="#882a7e"
+                android:gravity="center"
+                android:drawableTop="@drawable/ic_sport"
+                android:paddingTop="20dp"
+                android:layout_marginBottom="10dp"
+                />
+            <TextView
+                android:id="@+id/imgbuttonSosial"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:text="SOSIAL"
+                android:textSize="80px"
+                android:background="#9ae"
+                android:gravity="center"
+                android:drawableTop="@drawable/ic_sosial"
+                android:paddingTop="20dp"
+                android:layout_marginBottom="10dp"
+                />
+            <TextView
+                android:id="@+id/imgbuttonlingkungan"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:text="LINGKUNGAN"
+                android:textSize="80px"
+                android:background="#777"
+                android:gravity="center"
+                android:drawableTop="@drawable/ic_lingkungan"
+                android:paddingTop="20dp"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/imgbuttonSeminar"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:text="SEMINAR"
+                android:textSize="80px"
+                android:background="#eee"
+                android:gravity="center"
+                android:drawableTop="@drawable/ic_seminar"
+                android:paddingTop="20dp"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+    </ScrollView>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

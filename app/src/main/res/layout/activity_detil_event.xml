@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbarThumbVertical="@color/colorPrimaryDark"
+    android:scrollbarTrackVertical="@color/colorPrimary"
+    tools:context=".DetilEventActivity">
+
+    <RelativeLayout
+        android:id="@+id/layoutregister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/imgdetilevent"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/ic_sosial"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txtnamaDetilevent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imgdetilevent"
+            android:layout_marginTop="22dp"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            android:gravity="center"
+            android:text="nama event"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/txtBiayaDetilevent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtnamaDetilevent"
+            android:layout_marginTop="22dp"
+            android:text="biaya event"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/txttglmulaiDetilevent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtBiayaDetilevent"
+            android:layout_marginTop="22dp"
+            android:text="tgl mulai "
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/txttglakhirDetilevent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txttglmulaiDetilevent"
+            android:layout_marginTop="22dp"
+            android:text="tgl akhir"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/txtStokDetilevent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txttglakhirDetilevent"
+            android:layout_marginTop="22dp"
+            android:text="stok"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/txtDeskripsiDetilevent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtStokDetilevent"
+            android:layout_marginTop="22dp"
+            android:text="Deskripsi"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/txtNamaPembuatDetilevent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtDeskripsiDetilevent"
+            android:layout_marginTop="22dp"
+            android:text="Penyelengara"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/txtJenisEventDetilevent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtNamaPembuatDetilevent"
+            android:layout_marginTop="22dp"
+            android:text="Jenis event"
+            tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/btnDaftarEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Daftar"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:layout_below="@+id/txtJenisEventDetilevent"/>
+    </RelativeLayout>
+</ScrollView>
