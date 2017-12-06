@@ -24,16 +24,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:label="Home"/>
+        <activity
+            android:name=".MainActivity"
+            android:label="Home" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ProfileActivity"
-            android:label="Profile"/>
-        <activity android:name=".MyEventActivity"
-            android:label="My Events"/>
-        <activity android:name=".EventsActivity"
-            android:label="Events"/>
-        <activity android:name=".DetilEventActivity"></activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="Profile" />
+        <activity
+            android:name=".MyEventActivity"
+            android:label="My Events" />
+        <activity
+            android:name=".EventsActivity"
+            android:label="Events" />
+        <activity android:name=".DetilEventActivity" />
+        <activity android:name=".TambahEventActivity" />
+        <activity android:name=".DetilMyEventActivity" />
+        <activity android:name=".UpdateEventActivity" />
+        <activity android:name=".PendaftarMyEventActivity"></activity>
     </application>
 
 </manifest>
