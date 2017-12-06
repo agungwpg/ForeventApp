@@ -117,7 +117,8 @@ public class ProfileActivity extends AppCompatActivity {
         btneditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SABAR DULU SAYANG
+                Intent i = new Intent(getApplicationContext(),UpdateProfileActivity.class);
+                startActivity(i);
             }
         });
         btnlogout.setOnClickListener(new View.OnClickListener() {

@@ -38,6 +38,7 @@
             android:name=".EventsActivity"
             android:label="Events" />
         <activity android:name=".DetilEventActivity" />
+        <activity android:name=".UpdateProfileActivity" />
         <activity android:name=".TambahEventActivity" />
         <activity android:name=".DetilMyEventActivity" />
         <activity android:name=".UpdateEventActivity" />

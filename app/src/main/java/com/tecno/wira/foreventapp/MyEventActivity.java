@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -141,8 +142,20 @@ public class MyEventActivity extends AppCompatActivity {
 
             }
         });
+
+        Button btnAddEvent = (Button)findViewById(R.id.btnAddEvent);
+        btnAddEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),TambahEventActivity.class);
+                startActivity(i);
+            }
+        });
     }
-    private void loadDataMyevent(final String idpengguna2) {
+
+
+
+    public void loadDataMyevent(final String idpengguna2) {
 
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);

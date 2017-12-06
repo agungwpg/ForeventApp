@@ -88,11 +88,14 @@ public class RegisterActivity extends AppCompatActivity {
         // ================= deklarasi variable
 //        btnGallery = (Button)findViewById(R.id.btnPilihFoto);
         loginLink = (TextView)findViewById(R.id.link_login);
+        loginLink.setVisibility(View.VISIBLE);
         btnRegister =(Button) findViewById(R.id.btnRegister);
+        btnRegister.setText("Register");
         fotoprofil =(ImageView)findViewById(R.id.btnPilihFoto);
         namalengkap =(EditText)findViewById(R.id.txtnamaregister);
         username = (EditText) findViewById(R.id.txtusernameregister);
         password=(EditText) findViewById(R.id.txtpasswordregister);
+        password.setVisibility(View.VISIBLE);
         email =(EditText) findViewById(R.id.txtemailregister);
         datePicker= (DatePicker) findViewById(R.id.tgllhirregister);
         alamat=(EditText) findViewById(R.id.txtalamatregister);

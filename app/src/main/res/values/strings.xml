@@ -4,4 +4,17 @@
     <string name="title_myevents">My Events</string>
     <string name="app_name">Forevent.ID</string>
 
+
+    <string-array name="loadJenisspinnerevent">
+        <item>sport</item>
+        <item>lingkungan</item>
+        <item>sosial</item>
+        <item>seminar</item>
+    </string-array>
+
+    <string-array name="loadStatusAktifspinnerevent">
+        <item>aktif</item>
+        <item>tidak aktif</item>
+    </string-array>
+
 </resources>
