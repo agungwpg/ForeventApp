@@ -30,7 +30,8 @@
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".ProfileActivity"
-            android:label="Profile" />
+            android:label="Profile"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".MyEventActivity"
             android:label="My Events" />
@@ -42,7 +43,11 @@
         <activity android:name=".TambahEventActivity" />
         <activity android:name=".DetilMyEventActivity" />
         <activity android:name=".UpdateEventActivity" />
-        <activity android:name=".PendaftarMyEventActivity"></activity>
+        <activity android:name=".PendaftarMyEventActivity" />
+        <activity
+            android:name=".ProfileTabActivity"
+            android:label="@string/title_activity_profile_tab"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

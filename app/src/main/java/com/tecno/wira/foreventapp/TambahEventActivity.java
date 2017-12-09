@@ -99,6 +99,8 @@ public class TambahEventActivity extends AppCompatActivity {
         statusaktif =(Spinner) findViewById(R.id.spinnerStatusAktifTambahevent);
         btntambahevent =(Button) findViewById(R.id.btnTambahEvent);
 
+        btntambahevent.setText("Tambah Event");
+
         btngetgambar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,15 +142,7 @@ public class TambahEventActivity extends AppCompatActivity {
                 getjenis = jenis.getSelectedItem().toString();
                 getstatusaktif = statusaktif.getSelectedItem().toString();
                 //**************************************************************************************
-
-                if (conMgr.getActiveNetworkInfo() != null&& conMgr.getActiveNetworkInfo().isAvailable()
-                        && conMgr.getActiveNetworkInfo().isConnected())
-                {
-                    TambahEvent(getnama,getbiaya,gettglmulai,gettglakhir,getstok,encodeFotoeventtoString(),getdeskripsi,getidpengguna,getjenis,getstatusaktif);
-
-                } else {
-                    Toast.makeText(getApplicationContext() ,"No Internet Connection", Toast.LENGTH_LONG).show();
-                }
+                TambahEvent(getnama,getbiaya,gettglmulai,gettglakhir,getstok,encodeFotoeventtoString(),getdeskripsi,getidpengguna,getjenis,getstatusaktif);
 
             }
         });
@@ -304,4 +298,10 @@ public class TambahEventActivity extends AppCompatActivity {
             pDialog.dismiss();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(),MyEventActivity.class);
+        finish();
+        startActivity(i);
+    }
 }

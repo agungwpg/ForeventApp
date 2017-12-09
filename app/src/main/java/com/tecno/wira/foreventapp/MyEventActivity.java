@@ -119,16 +119,16 @@ public class MyEventActivity extends AppCompatActivity {
         progressBar = (ProgressBar)findViewById(R.id.ProgressBarMyevent);
 
         //---
-        conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        {
-            if (conMgr.getActiveNetworkInfo() != null
-                    && conMgr.getActiveNetworkInfo().isAvailable()
-                    && conMgr.getActiveNetworkInfo().isConnected()) {
-            } else {
-                Toast.makeText(getApplicationContext(), "No Internet Connection",
-                        Toast.LENGTH_LONG).show();
-            }
-        }
+//        conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//        {
+//            if (conMgr.getActiveNetworkInfo() != null
+//                    && conMgr.getActiveNetworkInfo().isAvailable()
+//                    && conMgr.getActiveNetworkInfo().isConnected()) {
+//            } else {
+//                Toast.makeText(getApplicationContext(), "No Internet Connection",
+//                        Toast.LENGTH_LONG).show();
+//            }
+//        }
         //--- menget id pengguna dari sharepreference
         sharedpreferences = getSharedPreferences(DetilEventActivity.my_shared_preferences, Context.MODE_PRIVATE);
         String idPenggunaSp = sharedpreferences.getString(TAG_ID,"");
@@ -148,6 +148,7 @@ public class MyEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),TambahEventActivity.class);
+                finish();
                 startActivity(i);
             }
         });
@@ -327,7 +328,7 @@ public class MyEventActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(MyEventActivity.this, DetilMyEventActivity.class);
-
+                        finish();
                         startActivity(intent);
 
                     } else {

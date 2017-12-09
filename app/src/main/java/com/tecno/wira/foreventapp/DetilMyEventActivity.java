@@ -1,6 +1,9 @@
 package com.tecno.wira.foreventapp;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -9,11 +12,27 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.tecno.wira.foreventapp.app.AppController;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.tecno.wira.foreventapp.Server.url;
 
 public class DetilMyEventActivity extends AppCompatActivity {
 
@@ -35,14 +54,25 @@ public class DetilMyEventActivity extends AppCompatActivity {
 
     public final String TAG_JENIS_DAFTAR="tag_jenis_daftar";
 
+    //----------
+    ProgressDialog pDialog;
+    int success;
+
+    String tag_json_obj = "json_obj_req";
+    private static final String TAG = MyEventActivity.class.getSimpleName();
+    private String url = Server.url+"hapusevent.php";
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_MESSAGE = "message";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detil_my_event);
 
         sharedpreferences = getSharedPreferences(DetilEventActivity.my_shared_preferences, Context.MODE_PRIVATE);
-        String  ideventSp =  sharedpreferences.getString(TAG_ID_DETILEVENT,"");
-        String namaeventSp = sharedpreferences.getString(TAG_NAMA_DETILEVENT,"");
+        final String  ideventSp =  sharedpreferences.getString(TAG_ID_DETILEVENT,"");
+        final String namaeventSp = sharedpreferences.getString(TAG_NAMA_DETILEVENT,"");
         String biayaeventSp = sharedpreferences.getString(TAG_BIAYA_DETILEVENT,"");
         String tglmulaieventSp = sharedpreferences.getString(TAG_TGLMULAI_DETILEVENT,"");
         String tglakhireventSp = sharedpreferences.getString(TAG_TGLAKHIR_DETILEVENT,"");
@@ -66,6 +96,7 @@ public class DetilMyEventActivity extends AppCompatActivity {
         Button btnLIhatPendaftarButton = (Button) findViewById(R.id.btnlihatpendaftarMYevent);
         TextView btnlihatPermintaandaftar = (TextView) findViewById(R.id.btnlihatpermintaandaftarMyevent);
         Button btneditevent =(Button)findViewById(R.id.btnMengupdateEvent);
+        Button btnHapusEvent =  (Button)findViewById(R.id.btnDelete);
 
         txtnama.setText(namaeventSp);
         txtbiaya.setText("Biaya Event : "+biayaeventSp+",00");
@@ -93,6 +124,7 @@ public class DetilMyEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),UpdateEventActivity.class);
+                finish();
                 startActivity(i);
             }
         });
@@ -106,6 +138,7 @@ public class DetilMyEventActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString(TAG_JENIS_DAFTAR, "sudah di terima");
                 editor.commit();
+                finish();
                 startActivity(i);
             }
         });
@@ -117,13 +150,123 @@ public class DetilMyEventActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString(TAG_JENIS_DAFTAR, "belum di terima");
                 editor.commit();
-
+                finish();
                 startActivity(i);
+            }
+        });
+        btnHapusEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder x  = new AlertDialog.Builder(DetilMyEventActivity.this);
+
+                x.setTitle("Konfirmasi ");
+
+                x.setMessage("Apakah Anda Ingin Menghapus Event  : "+namaeventSp+" ?")
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                hapusevent(ideventSp);
+                            }
+                        }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        // fungsi tidak
+                    }
+                }).show();
             }
         });
 
 
+    }
+
+    private void hapusevent(final String idEvent) {
+
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memproses Hapus ...");
+        showDialog();
 
 
+        StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "response hapus: " + response.toString());
+                hideDialog();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+
+                    success = jObj.getInt(TAG_SUCCESS);
+
+                    // Check for error node in json
+                    if (success == 1) {
+
+
+
+                        Log.e("Berhasil Menghapus event", jObj.toString());
+
+                        Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(DetilMyEventActivity.this, MyEventActivity.class);
+                        finish();
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+
+                    }
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Error hapus: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+
+                hideDialog();
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_event", idEvent);
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq,tag_json_obj);
+        //  AppController.getInstance().addToRequestQueue(strReq,tag_json_obj);
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(),MyEventActivity.class);
+        finish();
+        startActivity(i);
     }
 }
